@@ -7,8 +7,8 @@
               :draggable="draggable"
               :drag-delay="dragDelay"
               :row-count="rowCount"
-              :cell-width="cellWidth"
-              :cell-height="cellHeight"
+              :cell-width="v.cellWidth"
+              :cell-height="v.cellHeight"
               :window-width="windowWidth"
               :row-shift="rowShift"
               @dragstart="onDragStart"
@@ -43,6 +43,10 @@ export default {
       type: Number,
       default: -1
     },
+    draggable: {
+      type: Boolean,
+      default: false
+    },
     cellWidth: {
       type: Number,
       default: 80,
@@ -50,10 +54,6 @@ export default {
     cellHeight: {
       type: Number,
       default: 80
-    },
-    draggable: {
-      type: Boolean,
-      default: false
     },
     dragDelay: {
       type: Number,
@@ -80,7 +80,9 @@ export default {
           return {
             item,
             index: index,
-            sort: index
+            sort: index,
+            cellHeight: item.cellHeight,
+            cellWidth: item.cellWidth
           }
         })
       },
